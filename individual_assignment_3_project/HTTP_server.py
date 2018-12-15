@@ -47,7 +47,7 @@ def update_contact(name, phone):
     else:
         print("There is no such contact in the phonebook")
         
-        
+server.run()
         
         
         

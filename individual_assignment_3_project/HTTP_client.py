@@ -11,7 +11,7 @@ phonebook = {
         "Dani": "79060485763"
 }
 
-localhost = ""
+localhost = "http://127.0.0.1:5000"
 
 
 def show_phonebook():

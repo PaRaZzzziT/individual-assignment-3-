@@ -14,38 +14,38 @@ phonebook = {
 
 server = Flask("Phonebook")
 
-@server.route("/phonebook", methods = ["GET"])
+@server.route("/phonebook")
 def show_phonebook():
-    return phonebook
+    return jsonify(phonebook)
 
-@server.route("/addcontact/<name>/<phone>", methods = ["POST"])
+@server.route("/addcontact/<name>/<phone>")
 def add_contact(name, phone):
     temp_book = {name: phone}
     phonebook.update(temp_book)
-    print("Contact added!")
+    return jsonify("Contact added!")
     
-@server.route("/showcontact/<name>", methods = ["GET"])
+@server.route("/showcontact/<name>")
 def show_contact(name):
     if name in phonebook:
-        print(name + ": " + phonebook[name])
+        return jsonify(name + ": " + phonebook[name])
     else:
-        print("There is no such contact in the phonebook")
+        return jsonify("There is no such contact in the phonebook")
 
-@server.route("/removecontact/<name>", methods = ["POST"])
+@server.route("/removecontact/<name>")
 def del_contact(name):
     if name in phonebook:
         del phonebook[name]
-        print("The contact has been deleted!")
+        return jsonify("The contact has been deleted!")
     else:
-        print(name + " is not in the phonebook")
+        return jsonify(name + " is not in the phonebook")
         
-@server.route("/updatecontact/<name>/<phone>", methods = ["POST"])
+@server.route("/updatecontact/<name>/<phone>")
 def update_contact(name, phone):
     if name in phonebook:
         phonebook[name] = phone
-        print("The contact has been updated!")
+        return jsonify("The contact has been updated!")
     else:
-        print("There is no such contact in the phonebook")
+        return jsonify("There is no such contact in the phonebook")
         
 server.run()
         
